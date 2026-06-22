@@ -1,59 +1,48 @@
-# Shane Mendez
+# cv
 
-Staff Software Engineer — backend platform, identity & access control
-hypermemetic@proton.me · github.com/sshmendez
+Canonical source for my résumé, plus the tooling that turns markdown into a PDF
+and a published web page.
 
----
+**Live:** https://sshmendez.github.io/cv/ · **PDF:** https://sshmendez.github.io/cv/resume.pdf
 
-## Staff Software Engineer · Clinician Nexus
-*Compensation Management platform (multi-tenant healthcare SaaS) · 2026 – Present*
+## How it works
 
-Led the identity and access-control re-architecture for a multi-tenant healthcare
-compensation platform built on a Go microservice backend (gRPC/protobuf),
-PostgreSQL, and an Apache TinkerPop/Gremlin property graph. Worked end-to-end:
-shaped the work into milestones and research spikes, designed the type-level
-security model, and shipped the backend, migrations, and supporting UI.
+```
+resume.md            ── the canonical résumé (single source of truth)
+styles/resume.css    ── shared styling for the web page and the PDF
+build.mjs            ── renders resume.md → dist/index.html + dist/resume.pdf
+render.sh            ── local wrapper: full-contact PDF, Finder tags, iCloud, open
+.github/workflows/   ── on push to main, build and deploy the page to GitHub Pages
+```
 
-### Identity platform
-- Re-architected user identity off **email-as-primary-key** onto a canonical,
-  immutable, database-minted **UUID** held in a shared identity store — removing a
-  class of value-drift and cross-store identity bugs and decoupling login from the
-  graph data model.
-- Designed and built the **login-resolution contract**: `(subject, connection) →
-  canonical user`, with just-in-time first-contact provisioning and a gRPC boundary
-  so downstream services consume identity instead of re-resolving it.
-- Built the graph **user-node model** with an admin-gated autobind workflow
-  (key/email match → reviewable *suggestion* → **merge-on-confirm**), with a
-  per-invariant projection status that retries a failed person-bind instead of
-  silently skipping it — guaranteeing every login maps to a person record.
-- Drove the cutover that rewires RBAC and every consumer off the email string onto
-  the new UUID contract.
+`resume.md` and the published artifacts are **scrubbed** — they expose only my
+proton address and profile links, no phone or personal email.
 
-### Access control & data security (HIPAA / SOC 2 context)
-- Introduced a **capability-type architecture** (`AccessRef`): an
-  authorization-checked scope token threaded to every data read sink, so an
-  un-scoped data path fails to **compile** rather than being caught in review.
-- Designed a **PHI "lockbox"** — a capability-typed response boundary that masks
-  protected-health fields by default (fail-closed; a forgotten unmask returns
-  `********`, never raw PHI) — plus a small-model ensemble to discover untagged PHI.
-- Identified and fixed multiple **data-level-security defects**: limited-scope users
-  able to view out-of-scope participants/segments, soft-deleted roles leaking into
-  scope queries, and a participant-conflict path returning 500 instead of 409.
+## Edit & preview
 
-### Engineering leadership & methodology
-- Ran a **Shape Up** delivery workflow: decomposed pitches into dependency-ordered
-  milestones, research spikes (each closing on a pass/fail metric sheet), and build
-  tickets with explicit acceptance gates.
-- Established **strong-typing and capability-type conventions** adopted across the
-  codebase — domain newtypes at every boundary, validate-once-at-the-wire,
-  fail-closed by default.
-- Instituted **SOC 2 change-traceability**, retroactively linking merged changes to
-  tracked work items.
+```bash
+npm install            # first time (pulls headless Chromium for the PDF)
+npm run build:html     # fast: dist/index.html only
+open dist/index.html
+npm run build          # both HTML and PDF
+```
 
-**Stack:** Go · gRPC / Protocol Buffers · PostgreSQL (tern migrations) · Apache
-TinkerPop / Gremlin · Svelte · Auth0 · multi-tenant SaaS · Docker
+Push to `main` and the GitHub Action rebuilds and redeploys the live page + PDF.
 
----
+## Sending a full-contact PDF
 
-<sub>Drafted from 53 delivered/in-flight work items on the Compensation Management
-platform. Title and dates are placeholders — edit to match.</sub>
+The public PDF has no phone number or personal email. To produce a copy with the
+full contact line for sending directly to a recruiter:
+
+1. Create `contact.private.md` (gitignored) with a single line, e.g.
+   `210-555-0100 · you@gmail.com · [LinkedIn](https://linkedin.com/in/shmendez)`
+2. `./render.sh --full` — writes `dist/resume-full.pdf` (gitignored), copies it to
+   iCloud, and opens it. This artifact is never committed or published.
+
+## Targeted variants
+
+Alternate, role-targeted résumés live in `variants/`. Render one with:
+
+```bash
+RESUME_SRC=variants/fullstack-svelte-go.md npm run build:pdf
+```

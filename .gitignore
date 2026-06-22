@@ -1,0 +1,7 @@
+node_modules/
+dist/
+.DS_Store
+
+# Full contact details — phone + personal email. Never commit/publish.
+contact.private.md
+*-full.pdf

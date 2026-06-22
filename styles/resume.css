@@ -1,0 +1,128 @@
+/* Shared resume styling — used for both the PDF (md-to-pdf) and the web page. */
+
+:root {
+  --ink: #1a1a1a;
+  --muted: #555;
+  --accent: #1f4e79;
+  --rule: #d8d8d8;
+  --bg: #ffffff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Segoe UI", system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--bg);
+  line-height: 1.42;
+  font-size: 10.5pt;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* The web page (body.web) gets a gray backdrop + a white paper card. The PDF has
+   no .web class — md-to-pdf renders the body directly — so it stays pure white,
+   with page margins supplied by pdf_options. */
+body.web {
+  background: #f4f4f5;
+  padding: 2rem 1rem;
+}
+body.web .sheet {
+  background: #fff;
+  padding: 48px 56px;
+  box-shadow: 0 1px 4px rgba(0,0,0,.12);
+  border-radius: 4px;
+}
+
+h1 {
+  font-size: 24pt;
+  margin: 0 0 2px;
+  letter-spacing: -0.4px;
+  color: var(--ink);
+}
+
+/* The tagline + contact line directly under the name. */
+h1 + p {
+  margin: 0 0 2px;
+  color: var(--muted);
+  font-size: 11pt;
+}
+h1 + p + p {
+  margin: 0 0 4px;
+  font-size: 9.5pt;
+  color: var(--muted);
+}
+
+h2 {
+  font-size: 11pt;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: var(--accent);
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: 3px;
+  margin: 18px 0 10px;
+}
+
+h3 {
+  font-size: 11.5pt;
+  margin: 12px 0 0;
+  color: var(--ink);
+}
+
+/* The bold "dates | context" line right under each job/project title. */
+h3 + p {
+  margin: 1px 0 6px;
+  color: var(--muted);
+  font-size: 9.5pt;
+}
+
+p { margin: 6px 0; }
+
+ul {
+  margin: 4px 0 8px;
+  padding-left: 18px;
+}
+li { margin: 2.5px 0; }
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+strong { color: var(--ink); }
+
+code {
+  font-family: "SF Mono", ui-monospace, "Cascadia Code", Menlo, monospace;
+  font-size: 0.88em;
+  background: #f0f0f2;
+  padding: 0.5px 4px;
+  border-radius: 3px;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 10px 0;
+}
+
+/* "Stack:" trailer line under a job. */
+p > strong:first-child { color: var(--accent); }
+
+/* Download bar — only rendered on the web page, hidden in print. */
+.toolbar {
+  max-width: 800px;
+  margin: 0 auto 14px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  font-size: 9.5pt;
+}
+.toolbar a {
+  background: var(--accent);
+  color: #fff;
+  padding: 7px 14px;
+  border-radius: 5px;
+  font-weight: 600;
+}
+.toolbar a:hover { text-decoration: none; opacity: .9; }
+@media print { .toolbar { display: none; } }

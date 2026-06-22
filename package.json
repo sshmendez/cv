@@ -1,0 +1,16 @@
+{
+  "name": "cv",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Canonical resume source + markdown→PDF/HTML rendering pipeline",
+  "scripts": {
+    "build": "node build.mjs",
+    "build:pdf": "node build.mjs --pdf",
+    "build:html": "node build.mjs --html",
+    "clean": "rm -rf dist"
+  },
+  "dependencies": {
+    "marked": "^12.0.2",
+    "md-to-pdf": "^5.2.4"
+  }
+}
