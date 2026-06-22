@@ -10,7 +10,7 @@ hypermemetic@proton.me · [LinkedIn](https://linkedin.com/in/shmendez) · [GitHu
 
 **Languages:** Golang, Rust, Haskell, Python, SQL, TypeScript, Node.js, Terraform HCL, React, Solidity
 
-**Data & Streaming:** Kafka, PostgreSQL, CDC Pipelines, Segment, Amazon SQS
+**Data & Streaming:** Kafka, PostgreSQL, Graph Databases (Apache TinkerPop / Gremlin), CDC Pipelines, Segment, Amazon SQS
 
 **Cloud & Infrastructure:** AWS (ECS, SQS, S3), Kubernetes, Docker, GCP, Linux, Terraform
 

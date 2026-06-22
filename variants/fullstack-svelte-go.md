@@ -8,7 +8,7 @@
 
 ## Summary
 
-Full-stack software engineer with 7+ years of experience building data-rich Svelte applications and high-throughput Go microservices. Shipped 6 production SvelteKit apps including real-time dashboards with D3/uPlot visualizations and a cross-platform wallet with Tauri. Deep expertise in event-driven architecture, Kafka pipelines, and AWS infrastructure. Proven track record designing domain-driven solutions in Agile environments and mentoring distributed engineering teams.
+Full-stack software engineer with 7+ years of experience building data-rich Svelte applications and high-throughput Go microservices. Currently building a multi-tenant healthcare SaaS on a **Svelte front-end + Go / gRPC microservice backend**, backed by **PostgreSQL** and an **Apache TinkerPop / Gremlin** property graph. Shipped 6 production SvelteKit apps including real-time dashboards with D3/uPlot visualizations and a cross-platform wallet with Tauri. Deep expertise in event-driven architecture, Kafka pipelines, and AWS infrastructure. Proven track record designing domain-driven solutions in Agile environments and mentoring distributed engineering teams.
 
 ---
 
@@ -18,7 +18,7 @@ Full-stack software engineer with 7+ years of experience building data-rich Svel
 
 **Back-End:** Go, Rust, Python, RESTful APIs, gRPC, Microservices Architecture
 
-**Event-Driven & Data:** Kafka, Amazon SQS, CDC Pipelines, PostgreSQL, Domain-Driven Design
+**Event-Driven & Data:** Kafka, Amazon SQS, CDC Pipelines, PostgreSQL, Graph Databases (Apache TinkerPop / Gremlin), Domain-Driven Design
 
 **Cloud & Infrastructure:** AWS (ECS, SQS, S3, Lambda), Kubernetes, Docker, Terraform, GitHub Actions CI/CD
 
@@ -27,6 +27,14 @@ Full-stack software engineer with 7+ years of experience building data-rich Svel
 ---
 
 ## Work Experience
+
+### Staff Software Engineer | Clinician Nexus
+**February 2026 - Present** | Compensation Management — multi-tenant healthcare SaaS
+
+- Build full-stack features end to end across a **Svelte** front-end and a **Go / gRPC** microservice backend — e.g. a unified People page in Svelte over a typed `/people` gRPC + REST surface
+- Re-architected user identity onto a canonical, database-minted **UUID** spanning **PostgreSQL** and an **Apache TinkerPop / Gremlin** property graph, with a login-resolution contract that maps any SSO sign-in to a single canonical user
+- Designed **fail-closed** access control and PHI field masking for a HIPAA / SOC 2 environment — the secure path is the default, not a review catch
+- Ran a **Shape Up** delivery workflow: pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates
 
 ### Software Engineer | University of Phoenix
 **July 2023 - February 2026**
