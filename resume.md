@@ -25,10 +25,11 @@ hypermemetic@proton.me · [LinkedIn](https://linkedin.com/in/shmendez) · [GitHu
 
 Led the identity and access-control re-architecture for a multi-tenant healthcare compensation platform — working end to end, from shaping the work into milestones and research spikes through delivering the backend and supporting UI.
 
-- Re-architected user identity off **email-as-primary-key** onto a canonical, immutable, database-minted **UUID** in a shared identity store — eliminating a class of value-drift and cross-store identity bugs and decoupling login from the data model
-- Designed the **login-resolution contract** that maps any external sign-in to a single canonical user, with just-in-time first-contact provisioning and an admin-reviewed autobind workflow, so every login reliably resolves to one person record
-- Designed access control and PHI handling to be **fail-closed by default** — protected-health fields are masked unless explicitly authorized, making the secure path the default rather than something caught in review (HIPAA / SOC 2 context)
-- Drove the cutover that moved RBAC and every downstream consumer onto the new identity contract
+- Re-architected user identity off **email-as-primary-key** onto a canonical, immutable **UUID** minted in **PostgreSQL** and propagated across **Go** microservices and an **Apache TinkerPop / Gremlin** property graph — eliminating value-drift and cross-store identity bugs and decoupling login from the data model
+- Designed the **login-resolution contract** — a **Go** service exposed over **gRPC** — that maps any **Auth0** SSO sign-in to a single canonical user, with just-in-time first-contact provisioning and an admin-reviewed autobind workflow, so every login resolves to one person record
+- Built the unified **People page** in **Svelte** over a typed **gRPC** + REST surface, collapsing users, persons, and participants into a single identity list
+- Made access control and PHI handling **fail-closed by default** in **Go**'s type system — protected-health fields stay masked unless explicitly authorized, so the secure path is the default rather than a review catch (**HIPAA / SOC 2**)
+- Drove the cutover that moved **RBAC** and every downstream **Go** consumer onto the new identity contract
 - Ran a **Shape Up** delivery workflow — pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates — and instituted SOC 2 change-traceability
 
 **Stack:** Go · gRPC / Protocol Buffers · PostgreSQL · Apache TinkerPop / Gremlin · Svelte · Auth0 · Docker
