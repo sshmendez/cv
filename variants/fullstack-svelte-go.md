@@ -31,7 +31,7 @@ Full-stack software engineer with 7+ years of experience building data-rich Svel
 ### Staff Software Engineer | Clinician Nexus
 **February 2026 - Present** | Compensation Management — multi-tenant healthcare SaaS
 
-- Build full-stack features end to end across a **Svelte** front-end and a **Go / gRPC** microservice backend — e.g. a unified People page in Svelte over a typed `/people` gRPC + REST surface
+- Build full-stack features end to end across a **Svelte** front-end and a **Go / gRPC** microservice backend — e.g. a unified identity directory in **Svelte** over a typed **gRPC** + REST API
 - Re-architected user identity onto a canonical, database-minted **UUID** spanning **PostgreSQL** and an **Apache TinkerPop / Gremlin** property graph, with a login-resolution contract that maps any SSO sign-in to a single canonical user
 - Designed **fail-closed** access control and PHI field masking for a HIPAA / SOC 2 environment — the secure path is the default, not a review catch
 - Ran a **Shape Up** delivery workflow: pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates

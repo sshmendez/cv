@@ -27,7 +27,7 @@ Led the identity and access-control re-architecture for a multi-tenant healthcar
 
 - Re-architected user identity off **email-as-primary-key** onto a canonical, immutable **UUID** minted in **PostgreSQL** and propagated across **Go** microservices and an **Apache TinkerPop / Gremlin** property graph — eliminating value-drift and cross-store identity bugs and decoupling login from the data model
 - Designed the **login-resolution contract** — a **Go** service exposed over **gRPC** — that maps any **Auth0** SSO sign-in to a single canonical user, with just-in-time first-contact provisioning and an admin-reviewed autobind workflow, so every login resolves to one person record
-- Built the unified **People page** in **Svelte** over a typed **gRPC** + REST surface, collapsing users, persons, and participants into a single identity list
+- Built the main user-facing front-end in **Svelte** over a typed **gRPC** + REST API, consolidating multiple previously-separate identity records into one searchable directory
 - Made access control and PHI handling **fail-closed by default** in **Go**'s type system — protected-health fields stay masked unless explicitly authorized, so the secure path is the default rather than a review catch (**HIPAA / SOC 2**)
 - Drove the cutover that moved **RBAC** and every downstream **Go** consumer onto the new identity contract
 - Ran a **Shape Up** delivery workflow — pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates — and instituted SOC 2 change-traceability
