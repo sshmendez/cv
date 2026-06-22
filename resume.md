@@ -23,15 +23,15 @@ hypermemetic@proton.me · [LinkedIn](https://linkedin.com/in/shmendez) · [GitHu
 ### Staff Software Engineer | Clinician Nexus
 **2026 - Present** | Compensation Management platform (multi-tenant healthcare SaaS)
 
-Led the identity and access-control re-architecture for a multi-tenant healthcare compensation platform (Go gRPC/protobuf microservices, PostgreSQL, Apache TinkerPop/Gremlin property graph) — end to end, from shaping milestones and research spikes through backend, migrations, and supporting UI.
+Led the identity and access-control re-architecture for a multi-tenant healthcare compensation platform — working end to end, from shaping the work into milestones and research spikes through delivering the backend and supporting UI.
 
-- Re-architected user identity off **email-as-primary-key** onto a canonical, immutable, database-minted **UUID** in a shared identity store, eliminating a class of value-drift and cross-store identity bugs
-- Designed the **login-resolution contract** `(subject, connection) → canonical user` with just-in-time provisioning behind a gRPC boundary, plus a graph user-node model with an admin-gated autobind workflow (match → reviewable suggestion → merge-on-confirm)
-- Introduced a **capability-type architecture** (`AccessRef`) so any un-scoped data read fails to **compile**, and a fail-closed **PHI "lockbox"** that masks protected-health fields by default (HIPAA / SOC 2 context)
-- Identified and fixed multiple **data-level-security defects** (out-of-scope participant/segment leakage, soft-deleted roles leaking into scope queries) and instituted SOC 2 change-traceability
-- Ran a **Shape Up** delivery workflow and established strong-typing / capability-type conventions adopted across the codebase — domain newtypes at every boundary, validate-once-at-the-wire, fail-closed by default
+- Re-architected user identity off **email-as-primary-key** onto a canonical, immutable, database-minted **UUID** in a shared identity store — eliminating a class of value-drift and cross-store identity bugs and decoupling login from the data model
+- Designed the **login-resolution contract** that maps any external sign-in to a single canonical user, with just-in-time first-contact provisioning and an admin-reviewed autobind workflow, so every login reliably resolves to one person record
+- Designed access control and PHI handling to be **fail-closed by default** — protected-health fields are masked unless explicitly authorized, making the secure path the default rather than something caught in review (HIPAA / SOC 2 context)
+- Drove the cutover that moved RBAC and every downstream consumer onto the new identity contract
+- Ran a **Shape Up** delivery workflow — pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates — and instituted SOC 2 change-traceability
 
-**Stack:** Go · gRPC / Protocol Buffers · PostgreSQL (tern migrations) · Apache TinkerPop / Gremlin · Svelte · Auth0 · Docker
+**Stack:** Go · gRPC / Protocol Buffers · PostgreSQL · Apache TinkerPop / Gremlin · Svelte · Auth0 · Docker
 
 ### Software Engineer | University of Phoenix
 **July 2023 - February 2026**
