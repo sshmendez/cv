@@ -1,6 +1,6 @@
 # Shane Mendez
 
-Staff Software Engineer — backend platform, identity & access control
+Senior Software Engineer — backend platform, identity & access control
 
 hypermemetic@proton.me · [LinkedIn](https://linkedin.com/in/shmendez) · [GitHub](https://github.com/sshmendez) · [hypermemetic](https://github.com/hypermemetic)
 
@@ -20,16 +20,18 @@ hypermemetic@proton.me · [LinkedIn](https://linkedin.com/in/shmendez) · [GitHu
 
 ## Work Experience
 
-### Staff Software Engineer | Clinician Nexus
+### Senior Software Engineer | Clinician Nexus
 **2026 - Present** | Compensation Management platform (multi-tenant healthcare SaaS)
 
 Led the identity and access-control re-architecture for a multi-tenant healthcare compensation platform — working end to end, from shaping the work into milestones and research spikes through delivering the backend and supporting UI.
 
 - Re-architected user identity off **email-as-primary-key** onto a canonical, immutable **UUID** minted in **PostgreSQL** and propagated across **Go** microservices and an **Apache TinkerPop / Gremlin** property graph — eliminating value-drift and cross-store identity bugs and decoupling login from the data model
-- Designed the **login-resolution contract** — a **Go** service exposed over **gRPC** — that maps any **Auth0** SSO sign-in to a single canonical user, with just-in-time first-contact provisioning and an admin-reviewed autobind workflow, so every login resolves to one person record
+- Designed the **login-resolution contract** — a **Go** service exposed over **gRPC** — that resolves any **Auth0** SSO sign-in by its token subject (email is never an identity input), with just-in-time first-contact provisioning, so every login lands on one canonical user
+- Built the **record-matching lifecycle** that guarantees every user resolves to exactly one person record: automatic matching proposes links for admin confirm/reject, and an unmatched sign-in constructs and binds its record on the spot — with typed, provenance-ranked link states in the graph
 - Built the main user-facing front-end in **Svelte** over a typed **gRPC** + REST API, consolidating multiple previously-separate identity records into one searchable directory
-- Made access control and PHI handling **fail-closed by default** in **Go**'s type system — protected-health fields stay masked unless explicitly authorized, so the secure path is the default rather than a review catch (**HIPAA / SOC 2**)
-- Drove the cutover that moved **RBAC** and every downstream **Go** consumer onto the new identity contract
+- Enforced the identity model in **Go**'s type system — invalid identity states are unconstructable, and protected-health fields stay masked unless explicitly authorized, so access control and PHI handling **fail closed by default** rather than relying on review catches (**HIPAA / SOC 2**)
+- Drove the cutover that re-keyed **RBAC** — permission checks, role management, and ~140 downstream call sites across backend and front-end — onto the immutable identifier, retiring every email-keyed authorization path
+- Replaced synthetic database fixtures with a **test-user provisioning API** that constructs real, login-capable users on demand — one primitive shared by seed data, local login, and end-to-end tests
 - Ran a **Shape Up** delivery workflow — pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates — and instituted SOC 2 change-traceability
 
 **Stack:** Go · gRPC / Protocol Buffers · PostgreSQL · Apache TinkerPop / Gremlin · Svelte · Auth0 · Docker

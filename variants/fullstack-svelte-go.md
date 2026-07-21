@@ -28,7 +28,7 @@ Full-stack software engineer with 7+ years of experience building data-rich Svel
 
 ## Work Experience
 
-### Staff Software Engineer | Clinician Nexus
+### Senior Software Engineer | Clinician Nexus
 **February 2026 - Present** | Compensation Management — multi-tenant healthcare SaaS
 
 - Build full-stack features end to end across a **Svelte** front-end and a **Go / gRPC** microservice backend — e.g. a unified identity directory in **Svelte** over a typed **gRPC** + REST API

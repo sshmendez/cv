@@ -47,7 +47,7 @@ if (doHtml) {
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>${fullName} — Résumé</title>
-  <meta name="description" content="${fullName} — Staff Software Engineer. Résumé." />
+  <meta name="description" content="${fullName} — Senior Software Engineer. Résumé." />
   <style>${CSS}</style>
 </head>
 <body class="web">
