@@ -32,9 +32,7 @@ Full-stack software engineer with 7+ years of experience building data-rich Svel
 **February 2026 - Present** | Compensation Management — multi-tenant healthcare SaaS
 
 - Build full-stack features end to end across a **Svelte** front-end and a **Go / gRPC** microservice backend — e.g. a unified identity directory in **Svelte** over a typed **gRPC** + REST API
-- Re-architected user identity onto a canonical, database-minted **UUID** spanning **PostgreSQL** and an **Apache TinkerPop / Gremlin** property graph, with a login-resolution contract that maps any SSO sign-in to a single canonical user
-- Migrated the live user base onto the new model with **zero downtime** — shadow resolution beside the old path, idempotent convergence on every deploy, cutover as a validated switch
-- Own the platform's **user-resolution system**: closed a systemic gap where users in several organizations were recognized in only one, and verified every role's access organization-by-organization with an automated end-to-end matrix
+- Own the **user-resolution system**: re-architected identity onto a canonical **UUID** across **PostgreSQL** and a **Gremlin** graph, migrated the live user base with **zero downtime**, and verified every role's access organization-by-organization with an automated end-to-end matrix
 - Designed **fail-closed** access control and PHI field masking for a HIPAA / SOC 2 environment — the secure path is the default, not a review catch
 - Ran a **Shape Up** delivery workflow: pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates
 

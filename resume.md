@@ -23,19 +23,15 @@ hypermemetic@proton.me · [LinkedIn](https://linkedin.com/in/shmendez) · [GitHu
 ### Senior Software Engineer | Clinician Nexus
 **2026 - Present** | Compensation Management platform (multi-tenant healthcare SaaS)
 
-Own the user-resolution system for a multi-tenant healthcare compensation platform — the single authority for who each signed-in user is and what they can access in every organization they belong to. Led its identity and access-control re-architecture end to end, from shaping the work into milestones and research spikes through delivering the backend and supporting UI.
+Own the user-resolution system for a multi-tenant healthcare compensation platform — who each signed-in user is and what they can access in every organization they belong to.
 
-- Re-architected user identity off **email-as-primary-key** onto a canonical, immutable **UUID** minted in **PostgreSQL** and propagated across **Go** microservices and an **Apache TinkerPop / Gremlin** property graph — eliminating value-drift and cross-store identity bugs and decoupling login from the data model
-- Migrated the entire existing user base onto the new identity model with **zero downtime**: the new resolution path ran silently beside the old one in live production, idempotent self-healing passes converged existing records further on every deploy and sign-in — safe to re-run, loud on failure, never fatal — and the final cutover was a validated switch, with no maintenance window and no data freeze
-- Designed the **login-resolution contract** — a **Go** service exposed over **gRPC** — that resolves any **Auth0** SSO sign-in by its token subject (email is never an identity input), with just-in-time first-contact provisioning, so every login lands on one canonical user
-- Closed a systemic gap where users active in **several organizations** were recognized in only one: re-grounded resolution on the authoritative membership record, so directories, profiles, and permission management behave identically in every organization a user belongs to
-- Proved the access model with an automated **role-by-organization test matrix** — each role's visibility and permission-management rights verified end to end through the real product, in every organization it belongs to
-- Built the **record-matching lifecycle** that guarantees every user resolves to exactly one person record: automatic matching proposes links for admin confirm/reject, and an unmatched sign-in constructs and binds its record on the spot — with typed, provenance-ranked link states in the graph
-- Built the main user-facing front-end in **Svelte** over a typed **gRPC** + REST API, consolidating multiple previously-separate identity records into one searchable directory
-- Enforced the identity model in **Go**'s type system — invalid identity states are unconstructable, and protected-health fields stay masked unless explicitly authorized, so access control and PHI handling **fail closed by default** rather than relying on review catches (**HIPAA / SOC 2**)
-- Drove the cutover that re-keyed **RBAC** — permission checks, role management, and ~140 downstream call sites across backend and front-end — onto the immutable identifier, retiring every email-keyed authorization path
-- Replaced synthetic database fixtures with a **test-user provisioning API** that constructs real, login-capable users on demand — one primitive shared by seed data, local login, and end-to-end tests
-- Ran a **Shape Up** delivery workflow — pitches decomposed into dependency-ordered milestones and research spikes with explicit acceptance gates — and instituted SOC 2 change-traceability
+- Re-architected identity from email keys onto a canonical **UUID** spanning **PostgreSQL**, **Go** microservices, and a **Gremlin** property graph — then migrated the live user base with **zero downtime** (shadow resolution beside the old path, idempotent convergence, validated cutover)
+- Designed the **login-resolution contract**: any **Auth0** sign-in resolves to one canonical user, with just-in-time first-contact provisioning
+- Closed a systemic gap where users in several organizations were recognized in only one — and locked it in with an automated **role-by-organization access matrix**, verified end to end through the real product
+- Built the record-matching lifecycle binding every login to exactly one person record: auto-match, admin confirm/reject, provenance-ranked link states
+- Re-keyed **RBAC** (~140 call sites) onto the immutable identifier; access control and PHI masking **fail closed** by type design (**HIPAA / SOC 2**)
+- Built the identity directory UI in **Svelte**; replaced synthetic fixtures with a **test-user provisioning API** shared by seed data, local login, and end-to-end tests
+- Ran **Shape Up** delivery — dependency-ordered milestones, research spikes, explicit acceptance gates
 
 **Stack:** Go · gRPC / Protocol Buffers · PostgreSQL · Apache TinkerPop / Gremlin · Svelte · Auth0 · Docker
 
