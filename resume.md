@@ -18,6 +18,9 @@ hypermemetic@proton.me · [LinkedIn](https://linkedin.com/in/shmendez) · [GitHu
 
 ---
 
+I'm Shane, Founder of https://hypermemetic.ai and a life long software developer obsessed with building tools fast, without sacrificing on correctness.
+I believe a developer is only as strong as his tools, and good tools are found by analyzing your process. I've spent the last two years working on custom agent harnesses and learning how to make the most of this new ai era.
+
 ## Work Experience
 
 ### Senior Software Engineer | Clinician Nexus
@@ -27,11 +30,21 @@ Own the user-resolution system for a multi-tenant healthcare compensation platfo
 
 - Re-architected identity from email keys onto a canonical **UUID** spanning **PostgreSQL**, **Go** microservices, and a **Gremlin** property graph — then migrated the live user base with **zero downtime** (shadow resolution beside the old path, idempotent convergence, validated cutover)
 - Designed the **login-resolution contract**: any **Auth0** sign-in resolves to one canonical user, with just-in-time first-contact provisioning
-- Closed a systemic gap where users in several organizations were recognized in only one — and locked it in with an automated **role-by-organization access matrix**, verified end to end through the real product
-- Built the record-matching lifecycle binding every login to exactly one person record: auto-match, admin confirm/reject, provenance-ranked link states
-- Re-keyed **RBAC** (~140 call sites) onto the immutable identifier; access control and PHI masking **fail closed** by type design (**HIPAA / SOC 2**)
-- Built the identity directory UI in **Svelte**; replaced synthetic fixtures with a **test-user provisioning API** shared by seed data, local login, and end-to-end tests
-- Ran **Shape Up** delivery — dependency-ordered milestones, research spikes, explicit acceptance gates
+- Created user management api surface and frontend
+
+Own compensation system responsible for managing and submitting payroll, touching our full stack
+
+- Designed and built all critical money handling infrastructure blocking incoherent statesl transitions using postgres SQL triggers and Gremlin transactions on Neptune
+- Ensure that pay periods and pay schedules stay in sync
+- Construct payment lines from compensation data and guarantee payments can only be submitted once
+
+Designed and Built tools to better manage increasing capability with agent centered workflows (free time builds I did to improve my performance)
+
+- Rim: A custom ticket-centric Anthropic Agent SDK harness featuring mdx rendering
+- Gremlin-Viewer: A graph database viewer with a host of features for monitoring the graph state and building queries easily
+- Stack: Stand up our entire application stack under a worktree for an agent to work independently
+- Fleet: An automated pr review system built on custom review skills; pulls pr's, linear tickets, creates worktrees, standup Stacks, and builts agent context. Built in conjunction with coworkers
+- Custom skills and development practices to track things like vocabulary and adr'a
 
 **Stack:** Go · gRPC / Protocol Buffers · PostgreSQL · Apache TinkerPop / Gremlin · Svelte · Auth0 · Docker
 
