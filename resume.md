@@ -34,9 +34,10 @@ Own the user-resolution system for a multi-tenant healthcare compensation platfo
 
 Own compensation system responsible for managing and submitting payroll, touching our full stack
 
-- Designed and built all critical money handling infrastructure blocking incoherent statesl transitions using postgres SQL triggers and Gremlin transactions on Neptune
-- Ensure that pay periods and pay schedules stay in sync
+- Designed and built all critical money handling infrastructure blocking incoherent states transitions using postgres SQL triggers and Gremlin transactions on Neptune, along with strong typing and modeling in the application layer
+- Ensure that pay periods and pay schedules stay in sync between the SQL database and the graph
 - Construct payment lines from compensation data and guarantee payments can only be submitted once
+- Built thread safe edge constructors for associating provider data with organization data, while upholding data invariants like at-most-one edge with a particular property
 
 Designed and Built tools to better manage increasing capability with agent centered workflows (free time builds I did to improve my performance)
 
@@ -44,7 +45,7 @@ Designed and Built tools to better manage increasing capability with agent cente
 - Gremlin-Viewer: A graph database viewer with a host of features for monitoring the graph state and building queries easily
 - Stack: Stand up our entire application stack under a worktree for an agent to work independently
 - Fleet: An automated pr review system built on custom review skills; pulls pr's, linear tickets, creates worktrees, standup Stacks, and builts agent context. Built in conjunction with coworkers
-- Custom skills and development practices to track things like vocabulary and adr'a
+- Custom skills and development practices to track things like vocabulary and adr's, continually aligning the agents with our development practices
 
 **Stack:** Go · gRPC / Protocol Buffers · PostgreSQL · Apache TinkerPop / Gremlin · Svelte · Auth0 · Docker
 
